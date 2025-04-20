@@ -1,4 +1,8 @@
+require('dotenv').config(); // 👈 Add this at the top
+
 const express=require('express')
+
+
 const mongoose=require('mongoose')
 const cookieParser=require('cookie-parser');
 const cors=require('cors');
