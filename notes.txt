@@ -1,0 +1,174 @@
+client/
+│── src/
+│   ├── components/
+│   │   ├── student/
+│   │   │   ├── StudentDashboard.jsx
+│   │   │   ├── QRSubmit.jsx
+│   │   │   ├── MealStatus.jsx
+│   │   │   ├── StudentProfile.jsx
+│   │   │   ├── HistoryTable.jsx
+│   │   ├── staff/
+│   │   │   ├── StaffDashboard.jsx
+│   │   │   ├── AvailableMeals.jsx
+│   │   │   ├── ClaimMeal.jsx
+│   │   │   ├── StaffHistory.jsx
+│   ├── pages/
+│   │   ├── student/
+│   │   │   ├── home.jsx
+│   │   │   ├── profile.jsx
+│   │   │   ├── history.jsx
+│   │   │   ├── meal-status.jsx
+│   │   ├── staff/
+│   │   │   ├── home.jsx
+│   │   │   ├── claim-meal.jsx
+│   │   │   ├── meal-list.jsx
+│   │   │   ├── staff-history.jsx
+│   ├── store/
+│   │   ├── studentSlice.js
+│   │   ├── staffSlice.js
+│   │   ├── authSlice.js
+│   ├── lib/
+│   │   ├── api.js
+│   ├── config/
+│   │   ├── config.js
+│   ├── hooks/
+│   │   ├── useAuth.js
+│   ├── App.jsx
+│
+server/
+│── models/
+│   ├── User.js
+│   ├── Meal.js
+│   ├── Claim.js
+│── controllers/
+│   ├── auth-controller.js
+│   ├── student-controller.js
+│   ├── staff-controller.js
+│── routes/
+│   ├── auth-route.js
+│   ├── student-route.js
+│   ├── staff-route.js
+│── middleware/
+│   ├── authMiddleware.js
+│── db.js
+│── server.js
+
+
+
+he frontend will be responsible for rendering the UI and interacting with the backend through API calls.
+
+Essential Folders & Files
+a) Pages (Routing) - /pages/student
+home.jsx → Student Dashboard (QR meal submission, status tracking)
+
+profile.jsx → Student profile (view submitted meals, past history)
+
+history.jsx → List of past meals submitted
+
+meal-status.jsx → Display meal status (how many meals are available)
+
+b) Pages (Routing) - /pages/staff
+home.jsx → Staff Dashboard (view available meals)
+
+claim-meal.jsx → Page for staff to claim meals
+
+meal-list.jsx → List of available meals for staff
+
+staff-history.jsx → Past meal claims
+
+c) Components - /components/student
+StudentDashboard.jsx → Main student dashboard UI
+
+QRSubmit.jsx → Form to submit meal availability (QR code scan)
+
+MealStatus.jsx → Shows remaining available meals
+
+StudentProfile.jsx → Displays student's submitted meals
+
+HistoryTable.jsx → Table of past meal submissions
+
+d) Components - /components/staff
+StaffDashboard.jsx → Main staff dashboard UI
+
+AvailableMeals.jsx → List of unclaimed meals
+
+ClaimMeal.jsx → Button for staff to claim a meal
+
+StaffHistory.jsx → Displays past meal claims by the staff
+
+e) API & State Management - /store
+studentSlice.js → Redux state for student actions (submit QR, view history)
+
+staffSlice.js → Redux state for staff actions (view available meals, claim meal)
+
+authSlice.js → Authentication state (login, logout, user roles)
+
+f) API Calls - /lib/api.js
+Handles API requests for students and staff:
+
+getStudentMeals() → Fetches submitted meals of a student
+
+submitMeal(data) → Submits a QR meal availability request
+
+getAvailableMeals() → Fetches unclaimed meals for staff
+
+claimMeal(mealId) → Allows staff to claim a meal
+
+g) Config & Hooks
+config.js → API base URL, role-based access constants
+
+useAuth.js → Hook to check user roles and protect routes
+
+h) Routing - /App.jsx
+Define protected routes:
+
+jsx
+Copy
+Edit
+<Routes>
+  <Route path="/student/home" element={<StudentDashboard />} />
+  <Route path="/staff/home" element={<StaffDashboard />} />
+</Routes>
+2. Backend (Node.js, Express - server/)
+The backend will handle authentication, meal submissions, and meal claims.
+
+Essential Folders & Files
+a) Models - /models
+User.js → User schema (student/staff role)
+
+Meal.js → Meal submission schema (QR, student ID, status)
+
+Claim.js → Meal claim schema (staff ID, meal ID, timestamp)
+
+b) Controllers - /controllers
+auth-controller.js → Login, register, authentication
+
+student-controller.js → Handles student meal submissions, history
+
+staff-controller.js → Handles staff meal claims, available meals
+
+c) Routes - /routes
+auth-route.js → Handles login, signup
+
+student-route.js → API routes for student functionalities
+
+js
+Copy
+Edit
+router.post('/submit-meal', studentController.submitMeal);
+router.get('/meals', studentController.getMeals);
+staff-route.js → API routes for staff functionalities
+
+js
+Copy
+Edit
+router.get('/available-meals', staffController.getAvailableMeals);
+router.post('/claim-meal/:mealId', staffController.claimMeal);
+d) Middleware - /middleware/authMiddleware.js
+Protects routes based on user roles (student/staff)
+
+e) Database Connection - /db.js
+Connects MongoDB using Mongoose
+
+f) Server - /server.js
+Main entry point for Express backend
