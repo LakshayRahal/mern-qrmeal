@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { Skeleton } from "./components/ui/skeleton";
 import { useEffect } from "react";
 import ClaimHistory from "./pages/staff/claimed";
+import { Navigate } from "react-router-dom";
 export default function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
     (state) => state.auth || {}
