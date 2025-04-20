@@ -31,6 +31,7 @@ export default function App() {
   return (
     <div>
       <Routes>
+      <Route path="/" element={<Navigate to="/auth/login" />} />
         <Route
           path="/auth"
           element={
