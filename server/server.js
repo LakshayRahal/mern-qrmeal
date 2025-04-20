@@ -26,6 +26,7 @@ app.use(
         credentials:true // Enables sending cookies or authentication headers along with cross-origin requests.
     })
 );
+app.options('*', cors());
 
 app.use(cookieParser());
 app.use(express.json());
