@@ -17,6 +17,8 @@ import { Skeleton } from "./components/ui/skeleton";
 import { useEffect } from "react";
 import ClaimHistory from "./pages/staff/claimed";
 import { Navigate } from "react-router-dom";
+import Rewards from "./pages/student/reward";
+import StaffFeatures from "./pages/staff/features";
 export default function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
     (state) => state.auth || {}
@@ -26,8 +28,16 @@ export default function App() {
     dispatch(checkAuth());
   }, [dispatch]);
 
-  if (isLoading)
-    return <Skeleton className="w-[600px] bg-black h-[600px] rounded-full" />;
+  // if (isLoading)
+  //   return <Skeleton className="w-[600px] bg-black h-[600px] rounded-full" />;
+  // if (isLoading)
+  //   return (
+  //       <div className="relative w-[600px] h-[600px] rounded-full overflow-hidden">
+  //           <div className="absolute inset-0 bg-gradient-to-r from-black via-gray-800 to-black animate-[shimmer_2s_infinite] rounded-full" />
+  //           <div className="absolute inset-0 bg-black opacity-50 rounded-full" />
+  //       </div>
+  //   );
+
 
   return (
     <div>
@@ -54,6 +64,7 @@ export default function App() {
         >
           <Route path="dashboard" element={<StaffHome />} />
           <Route path="claimed" element={<ClaimHistory />} />
+          <Route path="features" element={<StaffFeatures />} />
         </Route>
         <Route path="*" element={<NotFound />} />
         <Route path="/unauth-page" element={<UnauthPage />} />
@@ -66,6 +77,7 @@ export default function App() {
           }
         >
           <Route path="home" element={<StudentHome />} />
+          <Route path="reward" element={<Rewards/>}/>
         </Route>
       </Routes>
     </div>

@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-// Sidebar menu items
+
 const StaffSidebarMenuItems = [
   {
     id: "dashboard",
@@ -19,7 +19,7 @@ const StaffSidebarMenuItems = [
   {
     id: "features",
     label: "Features",
-    path: "/staff/dashboard",
+    path: "/staff/features",
     icons: <BookMarked />,
   },
 

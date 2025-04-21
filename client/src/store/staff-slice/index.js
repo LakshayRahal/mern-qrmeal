@@ -35,7 +35,7 @@ export const fetchClaimHistory = createAsyncThunk(
     "staff/fetchClaimHistory",
     async (email, { rejectWithValue }) => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/staff/qr/history/${email}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/staff/qr/history/${auth.user.email}`);
         return res.data.data;
       } catch (error) {
         toast.error("Failed to fetch claim history");

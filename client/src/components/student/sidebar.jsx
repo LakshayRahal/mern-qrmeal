@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-// we have created this config because we have to import the icons that's why we directly made into it here
 
 const StudentSidebarMenuItems = [
   {
@@ -18,9 +17,9 @@ const StudentSidebarMenuItems = [
     icons: <LayoutDashboard />,
   },
   {
-    id: "Features",
-    label: "Features",
-    path: "/student/home",
+    id: "features",
+    label: "Rewards",
+    path: "/student/reward",
     icons: < BookMarked/>,
   },
   {
